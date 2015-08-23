@@ -1,0 +1,123 @@
+---
+title: "Human Activity Recognition"
+author: "Urvesh ******"
+date: "Sunday, August 23, 2015"
+output: html_document
+---
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement.More information about data and research is available from the website here: http://groupware.les.inf.puc-rio.br/har 
+
+__Goal__ : 
+To use data from accelerometers on the belt, forearm, arm, and dumbell of participants and predict the correct classes.
+
+Let us start by downloading the data and doing exploratory analysis.
+
+```{r}
+#download files from
+#download.file(url = "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", destfile = "pml-training.csv")
+#download.file(url = "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", destfile = "pml-testing.csv")
+
+train <- read.csv("pml-training.csv", na.strings=c("", "NA", "NULL"))[-1]
+test <- read.csv("pml-testing.csv", na.strings=c("", "NA", "NULL"))[-1]
+summary(train)
+
+names(test) <- names(train)
+temp <- rbind(train,test) 
+train <- temp[1:19622,]
+test <- temp[19623:19642,]
+#this is to avoid problem, faced as type mismatch, among variables of 2 different data frames 
+```
+
+So let us have look for the missing values in variables
+
+```{r}
+missingCount <- sapply(X = train, function(x){sum(is.na(x))})
+```
+
+Here, we can see missing value counts for each variable. It looks like many variable has NA counts more than 19K. Let us remove those.
+We calculate the index for which NA values are for more than 10k times and remove those from training data.
+
+```{r}
+missingCountI <- which(missingCount>10000)
+trainN <- train[,-c(missingCountI)]
+testN <- test[,-c(missingCountI)]
+dim(trainN)
+```
+
+Now only 59 variables are remaining.
+
+Let us start the with trying out Random Forest model.
+We are going to partition training data for further cross validation.
+We will use principal component analysis to reduce dimensionality.
+It will also take care of variable having high correlation.
+Here, we are also allowing R to use multiple cores by using doParallel package.
+
+```{r}
+require(doParallel)
+require(caret)
+registerDoParallel(cores=2)
+inTrainN <- createDataPartition(y = trainN$classe , p=0.60, list = FALSE)
+trainN1 <- trainN[inTrainN,]
+trainN2 <- trainN[-inTrainN,]
+fit1 <- train(classe ~ . , data = trainN1, method = "rpart", preProcess = "pca")
+fit1$finalModel
+
+plot(fit1$finalModel)
+
+text(fit1$finalModel)
+```
+
+In the above graph PC stands for Principal Components.
+Now, let us predict output for another part and cross validate results
+
+```{r}
+pred1 <- predict(fit1, trainN2)
+tabPred1 <- table(pred1, trainN2$classe)
+tabPred1
+```
+
+As you can see in the table there are lots of wrong prediction for almost each class
+Accuracy can be calculated as below.
+
+```{r}
+sum(diag(tabPred1))/length((pred1))*100
+```
+
+Accuracy is __49%__ only.
+
+Let us fit random forest model instead.
+```{r}
+require("randomForest")
+fit2 <- randomForest(classe ~ ., data = trainN1, ntree = 500 )
+fit2
+plot(fit2, main = "Number of trees vs error")
+```
+
+We can see sudden reduce in error while growing number of the trees.
+Now, let us crossvalidate using the same steps as previous method.
+
+```{r}
+pred2 <- predict(fit2, trainN2)
+tabPred2 <- table(pred2, trainN2$classe)
+tabPred2
+sum(diag(tabPred2))/length((pred2))*100
+```
+
+Accuracy here is __99.85%__ which is _out of sample__ accuracy. our final accuracy should be around this only.
+Even accuracy predicted by model is less than that.
+We will go with this model.
+Now, let us use complete training dataset to train the model and then we will test on the actual data.
+
+```{r}
+fit <- randomForest(classe ~ ., data = trainN, ntree = 500 )
+fit
+plot(fit, main = "Number of trees vs error")
+pred <- predict(fit, testN)
+pred
+pred <- as.character(pred)
+```
+
+Thus, We have the prediction using Random Forest for Human Activities. Accuracy of this result is __100%__ which is obviously more than the out of sample accuracy predicted for random forest model.

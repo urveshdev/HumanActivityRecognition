@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement.More information about data and research is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a> </p>
+
+<p><strong>Goal</strong> : 
+To use data from accelerometers on the belt, forearm, arm, and dumbell of participants and predict the correct classes.</p>
+
+<p>Let us start by downloading the data and doing exploratory analysis.</p>
+
+<pre><code class="r">#download files from
+#download.file(url = &quot;https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv&quot;, destfile = &quot;pml-training.csv&quot;)
+#download.file(url = &quot;https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv&quot;, destfile = &quot;pml-testing.csv&quot;)
+
+train &lt;- read.csv(&quot;pml-training.csv&quot;, na.strings=c(&quot;&quot;, &quot;NA&quot;, &quot;NULL&quot;))[-1]
+test &lt;- read.csv(&quot;pml-testing.csv&quot;, na.strings=c(&quot;&quot;, &quot;NA&quot;, &quot;NULL&quot;))[-1]
+summary(train)
+</code></pre>
+
+<pre><code>##     user_name    raw_timestamp_part_1 raw_timestamp_part_2
+##  adelmo  :3892   Min.   :1.322e+09    Min.   :   294      
+##  carlitos:3112   1st Qu.:1.323e+09    1st Qu.:252912      
+##  charles :3536   Median :1.323e+09    Median :496380      
+##  eurico  :3070   Mean   :1.323e+09    Mean   :500656      
+##  jeremy  :3402   3rd Qu.:1.323e+09    3rd Qu.:751891      
+##  pedro   :2610   Max.   :1.323e+09    Max.   :998801      
+##                                                           
+##           cvtd_timestamp  new_window    num_window      roll_belt     
+##  28/11/2011 14:14: 1498   no :19216   Min.   :  1.0   Min.   :-28.90  
+##  05/12/2011 11:24: 1497   yes:  406   1st Qu.:222.0   1st Qu.:  1.10  
+##  30/11/2011 17:11: 1440               Median :424.0   Median :113.00  
+##  05/12/2011 11:25: 1425               Mean   :430.6   Mean   : 64.41  
+##  02/12/2011 14:57: 1380               3rd Qu.:644.0   3rd Qu.:123.00  
+##  02/12/2011 13:34: 1375               Max.   :864.0   Max.   :162.00  
+##  (Other)         :11007                                               
+##    pitch_belt          yaw_belt       total_accel_belt kurtosis_roll_belt
+##  Min.   :-55.8000   Min.   :-180.00   Min.   : 0.00    #DIV/0!  :   10   
+##  1st Qu.:  1.7600   1st Qu.: -88.30   1st Qu.: 3.00    -1.908453:    2   
+##  Median :  5.2800   Median : -13.00   Median :17.00    -0.016850:    1   
+##  Mean   :  0.3053   Mean   : -11.21   Mean   :11.31    -0.021024:    1   
+##  3rd Qu.: 14.9000   3rd Qu.:  12.90   3rd Qu.:18.00    -0.025513:    1   
+##  Max.   : 60.3000   Max.   : 179.00   Max.   :29.00    (Other)  :  391   
+##                                                        NA&#39;s     :19216   
+##  kurtosis_picth_belt kurtosis_yaw_belt skewness_roll_belt
+##  #DIV/0!  :   32     #DIV/0!:  406     #DIV/0!  :    9   
+##  47.000000:    4     NA&#39;s   :19216     0.000000 :    4   
+##  -0.150950:    3                       0.422463 :    2   
+##  -0.684748:    3                       -0.003095:    1   
+##  -1.750749:    3                       -0.010002:    1   
+##  (Other)  :  361                       (Other)  :  389   
+##  NA&#39;s     :19216                       NA&#39;s     :19216   
+##  skewness_roll_belt.1 skewness_yaw_belt max_roll_belt     max_picth_belt 
+##  #DIV/0!  :   32      #DIV/0!:  406     Min.   :-94.300   Min.   : 3.00  
+##  0.000000 :    4      NA&#39;s   :19216     1st Qu.:-88.000   1st Qu.: 5.00  
+##  -2.156553:    3                        Median : -5.100   Median :18.00  
+##  -3.072669:    3                        Mean   : -6.667   Mean   :12.92  
+##  -6.324555:    3                        3rd Qu.: 18.500   3rd Qu.:19.00  
+##  (Other)  :  361                        Max.   :180.000   Max.   :30.00  
+##  NA&#39;s     :19216                        NA&#39;s   :19216     NA&#39;s   :19216  
+##   max_yaw_belt   min_roll_belt     min_pitch_belt   min_yaw_belt  
+##  -1.1   :   30   Min.   :-180.00   Min.   : 0.00   -1.1   :   30  
+##  -1.4   :   29   1st Qu.: -88.40   1st Qu.: 3.00   -1.4   :   29  
+##  -1.2   :   26   Median :  -7.85   Median :16.00   -1.2   :   26  
+##  -0.9   :   24   Mean   : -10.44   Mean   :10.76   -0.9   :   24  
+##  -1.3   :   22   3rd Qu.:   9.05   3rd Qu.:17.00   -1.3   :   22  
+##  (Other):  275   Max.   : 173.00   Max.   :23.00   (Other):  275  
+##  NA&#39;s   :19216   NA&#39;s   :19216     NA&#39;s   :19216   NA&#39;s   :19216  
+##  amplitude_roll_belt amplitude_pitch_belt amplitude_yaw_belt
+##  Min.   :  0.000     Min.   : 0.000       #DIV/0!:   10     
+##  1st Qu.:  0.300     1st Qu.: 1.000       0.00   :   12     
+##  Median :  1.000     Median : 1.000       0.0000 :  384     
+##  Mean   :  3.769     Mean   : 2.167       NA&#39;s   :19216     
+##  3rd Qu.:  2.083     3rd Qu.: 2.000                         
+##  Max.   :360.000     Max.   :12.000                         
+##  NA&#39;s   :19216       NA&#39;s   :19216                          
+##  var_total_accel_belt avg_roll_belt    stddev_roll_belt var_roll_belt    
+##  Min.   : 0.000       Min.   :-27.40   Min.   : 0.000   Min.   :  0.000  
+##  1st Qu.: 0.100       1st Qu.:  1.10   1st Qu.: 0.200   1st Qu.:  0.000  
+##  Median : 0.200       Median :116.35   Median : 0.400   Median :  0.100  
+##  Mean   : 0.926       Mean   : 68.06   Mean   : 1.337   Mean   :  7.699  
+##  3rd Qu.: 0.300       3rd Qu.:123.38   3rd Qu.: 0.700   3rd Qu.:  0.500  
+##  Max.   :16.500       Max.   :157.40   Max.   :14.200   Max.   :200.700  
+##  NA&#39;s   :19216        NA&#39;s   :19216    NA&#39;s   :19216    NA&#39;s   :19216    
+##  avg_pitch_belt    stddev_pitch_belt var_pitch_belt    avg_yaw_belt     
+##  Min.   :-51.400   Min.   :0.000     Min.   : 0.000   Min.   :-138.300  
+##  1st Qu.:  2.025   1st Qu.:0.200     1st Qu.: 0.000   1st Qu.: -88.175  
+##  Median :  5.200   Median :0.400     Median : 0.100   Median :  -6.550  
+##  Mean   :  0.520   Mean   :0.603     Mean   : 0.766   Mean   :  -8.831  
+##  3rd Qu.: 15.775   3rd Qu.:0.700     3rd Qu.: 0.500   3rd Qu.:  14.125  
+##  Max.   : 59.700   Max.   :4.000     Max.   :16.200   Max.   : 173.500  
+##  NA&#39;s   :19216     NA&#39;s   :19216     NA&#39;s   :19216    NA&#39;s   :19216     
+##  stddev_yaw_belt    var_yaw_belt        gyros_belt_x      
+##  Min.   :  0.000   Min.   :    0.000   Min.   :-1.040000  
+##  1st Qu.:  0.100   1st Qu.:    0.010   1st Qu.:-0.030000  
+##  Median :  0.300   Median :    0.090   Median : 0.030000  
+##  Mean   :  1.341   Mean   :  107.487   Mean   :-0.005592  
+##  3rd Qu.:  0.700   3rd Qu.:    0.475   3rd Qu.: 0.110000  
+##  Max.   :176.600   Max.   :31183.240   Max.   : 2.220000  
+##  NA&#39;s   :19216     NA&#39;s   :19216                          
+##   gyros_belt_y       gyros_belt_z      accel_belt_x       accel_belt_y   
+##  Min.   :-0.64000   Min.   :-1.4600   Min.   :-120.000   Min.   :-69.00  
+##  1st Qu.: 0.00000   1st Qu.:-0.2000   1st Qu.: -21.000   1st Qu.:  3.00  
+##  Median : 0.02000   Median :-0.1000   Median : -15.000   Median : 35.00  
+##  Mean   : 0.03959   Mean   :-0.1305   Mean   :  -5.595   Mean   : 30.15  
+##  3rd Qu.: 0.11000   3rd Qu.:-0.0200   3rd Qu.:  -5.000   3rd Qu.: 61.00  
+##  Max.   : 0.64000   Max.   : 1.6200   Max.   :  85.000   Max.   :164.00  
+##                                                                          
+##   accel_belt_z     magnet_belt_x   magnet_belt_y   magnet_belt_z   
+##  Min.   :-275.00   Min.   :-52.0   Min.   :354.0   Min.   :-623.0  
+##  1st Qu.:-162.00   1st Qu.:  9.0   1st Qu.:581.0   1st Qu.:-375.0  
+##  Median :-152.00   Median : 35.0   Median :601.0   Median :-320.0  
+##  Mean   : -72.59   Mean   : 55.6   Mean   :593.7   Mean   :-345.5  
+##  3rd Qu.:  27.00   3rd Qu.: 59.0   3rd Qu.:610.0   3rd Qu.:-306.0  
+##  Max.   : 105.00   Max.   :485.0   Max.   :673.0   Max.   : 293.0  
+##                                                                    
+##     roll_arm         pitch_arm          yaw_arm          total_accel_arm
+##  Min.   :-180.00   Min.   :-88.800   Min.   :-180.0000   Min.   : 1.00  
+##  1st Qu.: -31.77   1st Qu.:-25.900   1st Qu.: -43.1000   1st Qu.:17.00  
+##  Median :   0.00   Median :  0.000   Median :   0.0000   Median :27.00  
+##  Mean   :  17.83   Mean   : -4.612   Mean   :  -0.6188   Mean   :25.51  
+##  3rd Qu.:  77.30   3rd Qu.: 11.200   3rd Qu.:  45.8750   3rd Qu.:33.00  
+##  Max.   : 180.00   Max.   : 88.500   Max.   : 180.0000   Max.   :66.00  
+##                                                                         
+##  var_accel_arm     avg_roll_arm     stddev_roll_arm    var_roll_arm      
+##  Min.   :  0.00   Min.   :-166.67   Min.   :  0.000   Min.   :    0.000  
+##  1st Qu.:  9.03   1st Qu.: -38.37   1st Qu.:  1.376   1st Qu.:    1.898  
+##  Median : 40.61   Median :   0.00   Median :  5.702   Median :   32.517  
+##  Mean   : 53.23   Mean   :  12.68   Mean   : 11.201   Mean   :  417.264  
+##  3rd Qu.: 75.62   3rd Qu.:  76.33   3rd Qu.: 14.921   3rd Qu.:  222.647  
+##  Max.   :331.70   Max.   : 163.33   Max.   :161.964   Max.   :26232.208  
+##  NA&#39;s   :19216    NA&#39;s   :19216     NA&#39;s   :19216     NA&#39;s   :19216      
+##  avg_pitch_arm     stddev_pitch_arm var_pitch_arm       avg_yaw_arm      
+##  Min.   :-81.773   Min.   : 0.000   Min.   :   0.000   Min.   :-173.440  
+##  1st Qu.:-22.770   1st Qu.: 1.642   1st Qu.:   2.697   1st Qu.: -29.198  
+##  Median :  0.000   Median : 8.133   Median :  66.146   Median :   0.000  
+##  Mean   : -4.901   Mean   :10.383   Mean   : 195.864   Mean   :   2.359  
+##  3rd Qu.:  8.277   3rd Qu.:16.327   3rd Qu.: 266.576   3rd Qu.:  38.185  
+##  Max.   : 75.659   Max.   :43.412   Max.   :1884.565   Max.   : 152.000  
+##  NA&#39;s   :19216     NA&#39;s   :19216    NA&#39;s   :19216      NA&#39;s   :19216     
+##  stddev_yaw_arm     var_yaw_arm         gyros_arm_x      
+##  Min.   :  0.000   Min.   :    0.000   Min.   :-6.37000  
+##  1st Qu.:  2.577   1st Qu.:    6.642   1st Qu.:-1.33000  
+##  Median : 16.682   Median :  278.309   Median : 0.08000  
+##  Mean   : 22.270   Mean   : 1055.933   Mean   : 0.04277  
+##  3rd Qu.: 35.984   3rd Qu.: 1294.850   3rd Qu.: 1.57000  
+##  Max.   :177.044   Max.   :31344.568   Max.   : 4.87000  
+##  NA&#39;s   :19216     NA&#39;s   :19216                         
+##   gyros_arm_y       gyros_arm_z       accel_arm_x       accel_arm_y    
+##  Min.   :-3.4400   Min.   :-2.3300   Min.   :-404.00   Min.   :-318.0  
+##  1st Qu.:-0.8000   1st Qu.:-0.0700   1st Qu.:-242.00   1st Qu.: -54.0  
+##  Median :-0.2400   Median : 0.2300   Median : -44.00   Median :  14.0  
+##  Mean   :-0.2571   Mean   : 0.2695   Mean   : -60.24   Mean   :  32.6  
+##  3rd Qu.: 0.1400   3rd Qu.: 0.7200   3rd Qu.:  84.00   3rd Qu.: 139.0  
+##  Max.   : 2.8400   Max.   : 3.0200   Max.   : 437.00   Max.   : 308.0  
+##                                                                        
+##   accel_arm_z       magnet_arm_x     magnet_arm_y     magnet_arm_z   
+##  Min.   :-636.00   Min.   :-584.0   Min.   :-392.0   Min.   :-597.0  
+##  1st Qu.:-143.00   1st Qu.:-300.0   1st Qu.:  -9.0   1st Qu.: 131.2  
+##  Median : -47.00   Median : 289.0   Median : 202.0   Median : 444.0  
+##  Mean   : -71.25   Mean   : 191.7   Mean   : 156.6   Mean   : 306.5  
+##  3rd Qu.:  23.00   3rd Qu.: 637.0   3rd Qu.: 323.0   3rd Qu.: 545.0  
+##  Max.   : 292.00   Max.   : 782.0   Max.   : 583.0   Max.   : 694.0  
+##                                                                      
+##  kurtosis_roll_arm kurtosis_picth_arm kurtosis_yaw_arm skewness_roll_arm
+##  #DIV/0! :   78    #DIV/0! :   80     #DIV/0! :   11   #DIV/0! :   77   
+##  -0.02438:    1    -0.00484:    1     0.55844 :    2   -0.00051:    1   
+##  -0.04190:    1    -0.01311:    1     0.65132 :    2   -0.00696:    1   
+##  -0.05051:    1    -0.02967:    1     -0.01548:    1   -0.01884:    1   
+##  -0.05695:    1    -0.07394:    1     -0.01749:    1   -0.03359:    1   
+##  (Other) :  324    (Other) :  322     (Other) :  389   (Other) :  325   
+##  NA&#39;s    :19216    NA&#39;s    :19216     NA&#39;s    :19216   NA&#39;s    :19216   
+##  skewness_pitch_arm skewness_yaw_arm  max_roll_arm     max_picth_arm     
+##  #DIV/0! :   80     #DIV/0! :   11   Min.   :-73.100   Min.   :-173.000  
+##  -0.00184:    1     -1.62032:    2   1st Qu.: -0.175   1st Qu.:  -1.975  
+##  -0.01185:    1     0.55053 :    2   Median :  4.950   Median :  23.250  
+##  -0.01247:    1     -0.00311:    1   Mean   : 11.236   Mean   :  35.751  
+##  -0.02063:    1     -0.00562:    1   3rd Qu.: 26.775   3rd Qu.:  95.975  
+##  (Other) :  322     (Other) :  389   Max.   : 85.500   Max.   : 180.000  
+##  NA&#39;s    :19216     NA&#39;s    :19216   NA&#39;s   :19216     NA&#39;s   :19216     
+##   max_yaw_arm     min_roll_arm    min_pitch_arm      min_yaw_arm   
+##  Min.   : 4.00   Min.   :-89.10   Min.   :-180.00   Min.   : 1.00  
+##  1st Qu.:29.00   1st Qu.:-41.98   1st Qu.: -72.62   1st Qu.: 8.00  
+##  Median :34.00   Median :-22.45   Median : -33.85   Median :13.00  
+##  Mean   :35.46   Mean   :-21.22   Mean   : -33.92   Mean   :14.66  
+##  3rd Qu.:41.00   3rd Qu.:  0.00   3rd Qu.:   0.00   3rd Qu.:19.00  
+##  Max.   :65.00   Max.   : 66.40   Max.   : 152.00   Max.   :38.00  
+##  NA&#39;s   :19216   NA&#39;s   :19216    NA&#39;s   :19216     NA&#39;s   :19216  
+##  amplitude_roll_arm amplitude_pitch_arm amplitude_yaw_arm
+##  Min.   :  0.000    Min.   :  0.000     Min.   : 0.00    
+##  1st Qu.:  5.425    1st Qu.:  9.925     1st Qu.:13.00    
+##  Median : 28.450    Median : 54.900     Median :22.00    
+##  Mean   : 32.452    Mean   : 69.677     Mean   :20.79    
+##  3rd Qu.: 50.960    3rd Qu.:115.175     3rd Qu.:28.75    
+##  Max.   :119.500    Max.   :360.000     Max.   :52.00    
+##  NA&#39;s   :19216      NA&#39;s   :19216       NA&#39;s   :19216    
+##  roll_dumbbell     pitch_dumbbell     yaw_dumbbell     
+##  Min.   :-153.71   Min.   :-149.59   Min.   :-150.871  
+##  1st Qu.: -18.49   1st Qu.: -40.89   1st Qu.: -77.644  
+##  Median :  48.17   Median : -20.96   Median :  -3.324  
+##  Mean   :  23.84   Mean   : -10.78   Mean   :   1.674  
+##  3rd Qu.:  67.61   3rd Qu.:  17.50   3rd Qu.:  79.643  
+##  Max.   : 153.55   Max.   : 149.40   Max.   : 154.952  
+##                                                        
+##  kurtosis_roll_dumbbell kurtosis_picth_dumbbell kurtosis_yaw_dumbbell
+##  #DIV/0!:    5          -0.5464:    2           #DIV/0!:  406        
+##  -0.2583:    2          -0.9334:    2           NA&#39;s   :19216        
+##  -0.3705:    2          -2.0833:    2                                
+##  -0.5855:    2          -2.0851:    2                                
+##  -2.0851:    2          -2.0889:    2                                
+##  (Other):  393          (Other):  396                                
+##  NA&#39;s   :19216          NA&#39;s   :19216                                
+##  skewness_roll_dumbbell skewness_pitch_dumbbell skewness_yaw_dumbbell
+##  #DIV/0!:    4          -0.2328:    2           #DIV/0!:  406        
+##  -0.9324:    2          -0.3521:    2           NA&#39;s   :19216        
+##  0.1110 :    2          -0.7036:    2                                
+##  1.0312 :    2          0.1090 :    2                                
+##  -0.0082:    1          1.0326 :    2                                
+##  (Other):  395          (Other):  396                                
+##  NA&#39;s   :19216          NA&#39;s   :19216                                
+##  max_roll_dumbbell max_picth_dumbbell max_yaw_dumbbell min_roll_dumbbell
+##  Min.   :-70.10    Min.   :-112.90    -0.6   :   20    Min.   :-149.60  
+##  1st Qu.:-27.15    1st Qu.: -66.70    0.2    :   19    1st Qu.: -59.67  
+##  Median : 14.85    Median :  40.05    -0.8   :   18    Median : -43.55  
+##  Mean   : 13.76    Mean   :  32.75    -0.3   :   16    Mean   : -41.24  
+##  3rd Qu.: 50.58    3rd Qu.: 133.22    -0.2   :   15    3rd Qu.: -25.20  
+##  Max.   :137.00    Max.   : 155.00    (Other):  318    Max.   :  73.20  
+##  NA&#39;s   :19216     NA&#39;s   :19216      NA&#39;s   :19216    NA&#39;s   :19216    
+##  min_pitch_dumbbell min_yaw_dumbbell amplitude_roll_dumbbell
+##  Min.   :-147.00    -0.6   :   20    Min.   :  0.00         
+##  1st Qu.: -91.80    0.2    :   19    1st Qu.: 14.97         
+##  Median : -66.15    -0.8   :   18    Median : 35.05         
+##  Mean   : -33.18    -0.3   :   16    Mean   : 55.00         
+##  3rd Qu.:  21.20    -0.2   :   15    3rd Qu.: 81.04         
+##  Max.   : 120.90    (Other):  318    Max.   :256.48         
+##  NA&#39;s   :19216      NA&#39;s   :19216    NA&#39;s   :19216          
+##  amplitude_pitch_dumbbell amplitude_yaw_dumbbell total_accel_dumbbell
+##  Min.   :  0.00           #DIV/0!:    5          Min.   : 0.00       
+##  1st Qu.: 17.06           0.00   :  401          1st Qu.: 4.00       
+##  Median : 41.73           NA&#39;s   :19216          Median :10.00       
+##  Mean   : 65.93                                  Mean   :13.72       
+##  3rd Qu.: 99.55                                  3rd Qu.:19.00       
+##  Max.   :273.59                                  Max.   :58.00       
+##  NA&#39;s   :19216                                                       
+##  var_accel_dumbbell avg_roll_dumbbell stddev_roll_dumbbell
+##  Min.   :  0.000    Min.   :-128.96   Min.   :  0.000     
+##  1st Qu.:  0.378    1st Qu.: -12.33   1st Qu.:  4.639     
+##  Median :  1.000    Median :  48.23   Median : 12.204     
+##  Mean   :  4.388    Mean   :  23.86   Mean   : 20.761     
+##  3rd Qu.:  3.434    3rd Qu.:  64.37   3rd Qu.: 26.356     
+##  Max.   :230.428    Max.   : 125.99   Max.   :123.778     
+##  NA&#39;s   :19216      NA&#39;s   :19216     NA&#39;s   :19216       
+##  var_roll_dumbbell  avg_pitch_dumbbell stddev_pitch_dumbbell
+##  Min.   :    0.00   Min.   :-70.73     Min.   : 0.000       
+##  1st Qu.:   21.52   1st Qu.:-42.00     1st Qu.: 3.482       
+##  Median :  148.95   Median :-19.91     Median : 8.089       
+##  Mean   : 1020.27   Mean   :-12.33     Mean   :13.147       
+##  3rd Qu.:  694.65   3rd Qu.: 13.21     3rd Qu.:19.238       
+##  Max.   :15321.01   Max.   : 94.28     Max.   :82.680       
+##  NA&#39;s   :19216      NA&#39;s   :19216      NA&#39;s   :19216        
+##  var_pitch_dumbbell avg_yaw_dumbbell   stddev_yaw_dumbbell
+##  Min.   :   0.00    Min.   :-117.950   Min.   :  0.000    
+##  1st Qu.:  12.12    1st Qu.: -76.696   1st Qu.:  3.885    
+##  Median :  65.44    Median :  -4.505   Median : 10.264    
+##  Mean   : 350.31    Mean   :   0.202   Mean   : 16.647    
+##  3rd Qu.: 370.11    3rd Qu.:  71.234   3rd Qu.: 24.674    
+##  Max.   :6836.02    Max.   : 134.905   Max.   :107.088    
+##  NA&#39;s   :19216      NA&#39;s   :19216      NA&#39;s   :19216      
+##  var_yaw_dumbbell   gyros_dumbbell_x    gyros_dumbbell_y  
+##  Min.   :    0.00   Min.   :-204.0000   Min.   :-2.10000  
+##  1st Qu.:   15.09   1st Qu.:  -0.0300   1st Qu.:-0.14000  
+##  Median :  105.35   Median :   0.1300   Median : 0.03000  
+##  Mean   :  589.84   Mean   :   0.1611   Mean   : 0.04606  
+##  3rd Qu.:  608.79   3rd Qu.:   0.3500   3rd Qu.: 0.21000  
+##  Max.   :11467.91   Max.   :   2.2200   Max.   :52.00000  
+##  NA&#39;s   :19216                                            
+##  gyros_dumbbell_z  accel_dumbbell_x  accel_dumbbell_y  accel_dumbbell_z 
+##  Min.   : -2.380   Min.   :-419.00   Min.   :-189.00   Min.   :-334.00  
+##  1st Qu.: -0.310   1st Qu.: -50.00   1st Qu.:  -8.00   1st Qu.:-142.00  
+##  Median : -0.130   Median :  -8.00   Median :  41.50   Median :  -1.00  
+##  Mean   : -0.129   Mean   : -28.62   Mean   :  52.63   Mean   : -38.32  
+##  3rd Qu.:  0.030   3rd Qu.:  11.00   3rd Qu.: 111.00   3rd Qu.:  38.00  
+##  Max.   :317.000   Max.   : 235.00   Max.   : 315.00   Max.   : 318.00  
+##                                                                         
+##  magnet_dumbbell_x magnet_dumbbell_y magnet_dumbbell_z  roll_forearm      
+##  Min.   :-643.0    Min.   :-3600     Min.   :-262.00   Min.   :-180.0000  
+##  1st Qu.:-535.0    1st Qu.:  231     1st Qu.: -45.00   1st Qu.:  -0.7375  
+##  Median :-479.0    Median :  311     Median :  13.00   Median :  21.7000  
+##  Mean   :-328.5    Mean   :  221     Mean   :  46.05   Mean   :  33.8265  
+##  3rd Qu.:-304.0    3rd Qu.:  390     3rd Qu.:  95.00   3rd Qu.: 140.0000  
+##  Max.   : 592.0    Max.   :  633     Max.   : 452.00   Max.   : 180.0000  
+##                                                                           
+##  pitch_forearm     yaw_forearm      kurtosis_roll_forearm
+##  Min.   :-72.50   Min.   :-180.00   #DIV/0!:   84        
+##  1st Qu.:  0.00   1st Qu.: -68.60   -0.8079:    2        
+##  Median :  9.24   Median :   0.00   -0.9169:    2        
+##  Mean   : 10.71   Mean   :  19.21   -0.0227:    1        
+##  3rd Qu.: 28.40   3rd Qu.: 110.00   -0.0359:    1        
+##  Max.   : 89.80   Max.   : 180.00   (Other):  316        
+##                                     NA&#39;s   :19216        
+##  kurtosis_picth_forearm kurtosis_yaw_forearm skewness_roll_forearm
+##  #DIV/0!:   85          #DIV/0!:  406        #DIV/0!:   83        
+##  -0.0073:    1          NA&#39;s   :19216        -0.1912:    2        
+##  -0.0442:    1                               -0.4126:    2        
+##  -0.0489:    1                               -0.0004:    1        
+##  -0.0523:    1                               -0.0013:    1        
+##  (Other):  317                               (Other):  317        
+##  NA&#39;s   :19216                               NA&#39;s   :19216        
+##  skewness_pitch_forearm skewness_yaw_forearm max_roll_forearm
+##  #DIV/0!:   85          #DIV/0!:  406        Min.   :-66.60  
+##  0.0000 :    4          NA&#39;s   :19216        1st Qu.:  0.00  
+##  -0.6992:    2                               Median : 26.80  
+##  -0.0113:    1                               Mean   : 24.49  
+##  -0.0131:    1                               3rd Qu.: 45.95  
+##  (Other):  313                               Max.   : 89.80  
+##  NA&#39;s   :19216                               NA&#39;s   :19216   
+##  max_picth_forearm max_yaw_forearm min_roll_forearm  min_pitch_forearm
+##  Min.   :-151.00   #DIV/0!:   84   Min.   :-72.500   Min.   :-180.00  
+##  1st Qu.:   0.00   -1.2   :   32   1st Qu.: -6.075   1st Qu.:-175.00  
+##  Median : 113.00   -1.3   :   31   Median :  0.000   Median : -61.00  
+##  Mean   :  81.49   -1.4   :   24   Mean   : -0.167   Mean   : -57.57  
+##  3rd Qu.: 174.75   -1.5   :   24   3rd Qu.: 12.075   3rd Qu.:   0.00  
+##  Max.   : 180.00   (Other):  211   Max.   : 62.100   Max.   : 167.00  
+##  NA&#39;s   :19216     NA&#39;s   :19216   NA&#39;s   :19216     NA&#39;s   :19216    
+##  min_yaw_forearm amplitude_roll_forearm amplitude_pitch_forearm
+##  #DIV/0!:   84   Min.   :  0.000        Min.   :  0.0          
+##  -1.2   :   32   1st Qu.:  1.125        1st Qu.:  2.0          
+##  -1.3   :   31   Median : 17.770        Median : 83.7          
+##  -1.4   :   24   Mean   : 24.653        Mean   :139.1          
+##  -1.5   :   24   3rd Qu.: 39.875        3rd Qu.:350.0          
+##  (Other):  211   Max.   :126.000        Max.   :360.0          
+##  NA&#39;s   :19216   NA&#39;s   :19216          NA&#39;s   :19216          
+##  amplitude_yaw_forearm total_accel_forearm var_accel_forearm
+##  #DIV/0!:   84         Min.   :  0.00      Min.   :  0.000  
+##  0.00   :  322         1st Qu.: 29.00      1st Qu.:  6.759  
+##  NA&#39;s   :19216         Median : 36.00      Median : 21.165  
+##                        Mean   : 34.72      Mean   : 33.502  
+##                        3rd Qu.: 41.00      3rd Qu.: 51.240  
+##                        Max.   :108.00      Max.   :172.606  
+##                                            NA&#39;s   :19216    
+##  avg_roll_forearm   stddev_roll_forearm var_roll_forearm  
+##  Min.   :-177.234   Min.   :  0.000     Min.   :    0.00  
+##  1st Qu.:  -0.909   1st Qu.:  0.428     1st Qu.:    0.18  
+##  Median :  11.172   Median :  8.030     Median :   64.48  
+##  Mean   :  33.165   Mean   : 41.986     Mean   : 5274.10  
+##  3rd Qu.: 107.132   3rd Qu.: 85.373     3rd Qu.: 7289.08  
+##  Max.   : 177.256   Max.   :179.171     Max.   :32102.24  
+##  NA&#39;s   :19216      NA&#39;s   :19216       NA&#39;s   :19216     
+##  avg_pitch_forearm stddev_pitch_forearm var_pitch_forearm 
+##  Min.   :-68.17    Min.   : 0.000       Min.   :   0.000  
+##  1st Qu.:  0.00    1st Qu.: 0.336       1st Qu.:   0.113  
+##  Median : 12.02    Median : 5.516       Median :  30.425  
+##  Mean   : 11.79    Mean   : 7.977       Mean   : 139.593  
+##  3rd Qu.: 28.48    3rd Qu.:12.866       3rd Qu.: 165.532  
+##  Max.   : 72.09    Max.   :47.745       Max.   :2279.617  
+##  NA&#39;s   :19216     NA&#39;s   :19216        NA&#39;s   :19216     
+##  avg_yaw_forearm   stddev_yaw_forearm var_yaw_forearm    gyros_forearm_x  
+##  Min.   :-155.06   Min.   :  0.000    Min.   :    0.00   Min.   :-22.000  
+##  1st Qu.: -26.26   1st Qu.:  0.524    1st Qu.:    0.27   1st Qu.: -0.220  
+##  Median :   0.00   Median : 24.743    Median :  612.21   Median :  0.050  
+##  Mean   :  18.00   Mean   : 44.854    Mean   : 4639.85   Mean   :  0.158  
+##  3rd Qu.:  85.79   3rd Qu.: 85.817    3rd Qu.: 7368.41   3rd Qu.:  0.560  
+##  Max.   : 169.24   Max.   :197.508    Max.   :39009.33   Max.   :  3.970  
+##  NA&#39;s   :19216     NA&#39;s   :19216      NA&#39;s   :19216                       
+##  gyros_forearm_y     gyros_forearm_z    accel_forearm_x   accel_forearm_y 
+##  Min.   : -7.02000   Min.   : -8.0900   Min.   :-498.00   Min.   :-632.0  
+##  1st Qu.: -1.46000   1st Qu.: -0.1800   1st Qu.:-178.00   1st Qu.:  57.0  
+##  Median :  0.03000   Median :  0.0800   Median : -57.00   Median : 201.0  
+##  Mean   :  0.07517   Mean   :  0.1512   Mean   : -61.65   Mean   : 163.7  
+##  3rd Qu.:  1.62000   3rd Qu.:  0.4900   3rd Qu.:  76.00   3rd Qu.: 312.0  
+##  Max.   :311.00000   Max.   :231.0000   Max.   : 477.00   Max.   : 923.0  
+##                                                                           
+##  accel_forearm_z   magnet_forearm_x  magnet_forearm_y magnet_forearm_z
+##  Min.   :-446.00   Min.   :-1280.0   Min.   :-896.0   Min.   :-973.0  
+##  1st Qu.:-182.00   1st Qu.: -616.0   1st Qu.:   2.0   1st Qu.: 191.0  
+##  Median : -39.00   Median : -378.0   Median : 591.0   Median : 511.0  
+##  Mean   : -55.29   Mean   : -312.6   Mean   : 380.1   Mean   : 393.6  
+##  3rd Qu.:  26.00   3rd Qu.:  -73.0   3rd Qu.: 737.0   3rd Qu.: 653.0  
+##  Max.   : 291.00   Max.   :  672.0   Max.   :1480.0   Max.   :1090.0  
+##                                                                       
+##  classe  
+##  A:5580  
+##  B:3797  
+##  C:3422  
+##  D:3216  
+##  E:3607  
+##          
+## 
+</code></pre>
+
+<pre><code class="r">names(test) &lt;- names(train)
+temp &lt;- rbind(train,test) 
+train &lt;- temp[1:19622,]
+test &lt;- temp[19623:19642,]
+#this is to avoid problem, faced as type mismatch, among variables of 2 different data frames 
+</code></pre>
+
+<p>So let us have look for the missing values in variables</p>
+
+<pre><code class="r">missingCount &lt;- sapply(X = train, function(x){sum(is.na(x))})
+</code></pre>
+
+<p>Here, we can see missing value counts for each variable. It looks like many variable has NA counts more than 19K. Let us remove those.
+We calculate the index for which NA values are for more than 10k times and remove those from training data.</p>
+
+<pre><code class="r">missingCountI &lt;- which(missingCount&gt;10000)
+trainN &lt;- train[,-c(missingCountI)]
+testN &lt;- test[,-c(missingCountI)]
+dim(trainN)
+</code></pre>
+
+<pre><code>## [1] 19622    59
+</code></pre>
+
+<p>Now only 59 variables are remaining.</p>
+
+<p>Let us start the with trying out Random Forest model.
+We are going to partition training data for further cross validation.
+We will use principal component analysis to reduce dimensionality.
+It will also take care of variable having high correlation.
+Here, we are also allowing R to use multiple cores by using doParallel package.</p>
+
+<pre><code class="r">require(doParallel)
+require(caret)
+registerDoParallel(cores=2)
+inTrainN &lt;- createDataPartition(y = trainN$classe , p=0.60, list = FALSE)
+trainN1 &lt;- trainN[inTrainN,]
+trainN2 &lt;- trainN[-inTrainN,]
+fit1 &lt;- train(classe ~ . , data = trainN1, method = &quot;rpart&quot;, preProcess = &quot;pca&quot;)
+fit1$finalModel
+</code></pre>
+
+<pre><code>## n= 11776 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##  1) root 11776 8428 A (0.28 0.19 0.17 0.16 0.18)  
+##    2) PC13&lt; 0.6849755 8865 6074 A (0.31 0.23 0.21 0.15 0.096)  
+##      4) PC20&lt; 0.6640599 6302 3598 A (0.43 0.26 0.15 0.093 0.069) *
+##      5) PC20&gt;=0.6640599 2563 1608 C (0.034 0.14 0.37 0.29 0.16)  
+##       10) PC2&lt; 1.440709 1847  896 C (0.047 0.2 0.51 0.22 0.021) *
+##       11) PC2&gt;=1.440709 716  339 E (0 0 0.0056 0.47 0.53) *
+##    3) PC13&gt;=0.6849755 2911 1597 E (0.19 0.092 0.058 0.21 0.45) *
+</code></pre>
+
+<pre><code class="r">plot(fit1$finalModel)
+
+text(fit1$finalModel)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAABlBMVEUAAAD///+l2Z/dAAAACXBIWXMAAAsSAAALEgHS3X78AAAKB0lEQVR4nO3d0VIcxxZE0eL/f9ohmz7TPYIKJzGQneReNwwIEaostpiB6wevN1Ra7gHwIHwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXInwpwpcifCnClyJ8KcKXIvzH1h/HW+/vuv7y9JHXtx6v7vzJvfM2p3W8WPOLy7suH7jOb62PPup+bj7P5qg8TdfjU3V9BLi89Xbpf2d33+dyDf941/HG5QngCL9OX+03f6Qn/CeO5/i/wz+9+xR+nf9O3P3R/s7bnNbT67f/8xV/eY5/u/cn987bnK7h1/ldpy/wN8L/Ntcv78e7Pvte7u05PA/1mU5P4p/8HH/96f308H99dVe3Hndr4Z+5oPkLe9pn85sqfYObTb3ZHHXQ7eZ/7mZTbzaH8D/lZnMI/1NuNofwP+Vmcwj/U242h/C1CF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpfLCrz+Ot86vj1++f9j5Hc8fsU4vSwWGP148/XO8OR/2eMfzR6zTy1a54S9ftdfw/715Df92Wr8eH1ArPfzjnfPF//71fAl/pD791j1uYxMY/v05/ukJ/fx4/t+7TuHX+3P++cHgHrexCQz/9Pp4e/sVf35MeH6a6JQefl1ebJ7jT+HX/N0olhv+9E369ZfH737+XT1f8dHhTz+dr9Nj/OPDHt8L8HP8X/LC/09BUy0IX8oWfqV73afCwhf+dX+URfp+DeFH+n4N4Uf6fg3hR/R++bsUwo/o/fJ4wo/o/YT/uuj9hP+66P08x39d9H6+4r8uej/hvy56P+G/Lno/z/Ffl75fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X0P4kb5fQ/iRvl9D+JG+X1MUfv1xvHV5/f77b5c7rPOru99N1xT+ePH8z+P3T38R5u/G6Re/SWH4y9fw6dX693/z0afw6/Z309WGP73z/RH/8gCwjg/nof4n/6hvcTzHf/a8Tnj/H/Ut1tPrefuDr/g1vyT8T/5R3+Iafp3f9df3eu+PDvODwN3vpisM/yi8/vp9fpzz/lHf4vwd+/EQv55Kn/4+EN7wR1mk79f8ovDLzXx/TdbaLfdV3OdrstZuua/iPl+TtXbLfRX3+ZrXrbXf2z3Afb7mZWv9/yKj/XwN4X/N+RrC/5rzNa9a+/yvvQzcn3j3+ZqXhff/PxjuT7z7fA1f8b/mfM2L1t7hX2W4P/Hu8zWE/zXna7LWbrmv4j5fk7V2y30V9/marLVb7qu4z9dkrd1yX8V9viZr7Zb7Ku7zNVlrt9xXcZ+vyVq75b6K+3xN1tot91Xc52uy1m65r+I+X5O1dst9Fff5mqy1W+6ruM/XZK3dcl/Ffb4ma+2W+yru8zVZa7fcV3Gfr8lau+W+ivt8TdbaLfdV3OdrstZuua/iPl+TtXbLfRX3+ZqstVvuq7jP12St3XJfxX2+Jmvtlvsq7vM1WWu33Fdxn6/JWrvlvor7fE3W2i33Vdzna7LWbrmv4j5fk7V2y30V9/marLVb7qu4z9dkrd1yX8V9viZr7Zb7Ku7zNVlrt9xXcZ+vyVq75b6K+3xN1tot91Xc52uy1m65r+I+X5O1dst9Fff5mqy1W+6ruM/XZK3dcl/Ffb4ma+2W+yru8zVZa7fcV3Gfr8lau+W+ivt8TdbaLfdV3OdrstZuua/iPl+TtXbLfRX3+ZqstVvuq7jP12St3XJfxX2+Jmvtlvsq7vM1WWu33Fdxn6/JWrvlvor7fE3W2i33Vdzna7LWbrmv4j5fk7V2y30V9/marLVb7qu4z9dkrd1yX8V9viZrLV6G8KUIX+rXhDf/F07XDf4bq5KkrTvrzXuXuM9j3OCPrdNL44AgcYM/Zr+GfYAqbvDH7NfgOd7Dfg37AFXc4I/xHK+KG/wJvqsXxQ3+DD/Ha5K24oUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpQhfivClCF+K8KUIX4rwpf4BBYPZPDlEp9YAAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<p>In the above graph PC stands for Principal Components.
+Now, let us predict output for another part and cross validate results</p>
+
+<pre><code class="r">pred1 &lt;- predict(fit1, trainN2)
+tabPred1 &lt;- table(pred1, trainN2$classe)
+tabPred1
+</code></pre>
+
+<pre><code>##      
+## pred1    A    B    C    D    E
+##     A 1832 1094  575  388  309
+##     B    0    0    0    0    0
+##     C   48  240  679  281   36
+##     D    0    0    0    0    0
+##     E  352  184  114  617 1097
+</code></pre>
+
+<p>As you can see in the table there are lots of wrong prediction for almost each class
+Accuracy can be calculated as below.</p>
+
+<pre><code class="r">sum(diag(tabPred1))/length((pred1))*100
+</code></pre>
+
+<pre><code>## [1] 45.98522
+</code></pre>
+
+<p>Accuracy is <strong>49%</strong> only.</p>
+
+<p>Let us fit random forest model instead.</p>
+
+<pre><code class="r">require(&quot;randomForest&quot;)
+fit2 &lt;- randomForest(classe ~ ., data = trainN1, ntree = 500 )
+fit2
+</code></pre>
+
+<pre><code>## 
+## Call:
+##  randomForest(formula = classe ~ ., data = trainN1, ntree = 500) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 7
+## 
+##         OOB estimate of  error rate: 0.24%
+## Confusion matrix:
+##      A    B    C    D    E  class.error
+## A 3345    3    0    0    0 0.0008960573
+## B    4 2273    2    0    0 0.0026327337
+## C    0    8 2042    4    0 0.0058422590
+## D    0    0    2 1927    1 0.0015544041
+## E    0    0    0    4 2161 0.0018475751
+</code></pre>
+
+<pre><code class="r">plot(fit2, main = &quot;Number of trees vs error&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAFVBMVEUAAAAAAP8AzQAA////AAD/AP/////iDJLhAAAACXBIWXMAAAsSAAALEgHS3X78AAAOY0lEQVR4nO2dCaKiMBAFo2Duf+QxhF1QHEKn/a9qRr8ihECRzgJiiCBJqJ0BqAPiRUG8KIgXBfGiIF4UxIuCeFEQLwriRUG8KIgXBfGiIF4UxIuCeFEQLwriRUG8KIgXBfGiIF4UxIuCeFEQL8ovig9het79+HMi/Wy/uAcK8IubnZ2dEz/OdOww+Xv84maHzvzwGF50//v3Y2keg8NMdOiTCHF8McwQVgvGEJZHyLjwPDPTKlbpzNfrDa/5esem+IHh9TDjQvP48kX81tR5Ui/riov0ttOZz+gNr/l6x1S05iV+9ujL/lzVuOj8sz6xReXxkmxczrg7cZ7OuBK/u9dvzvb5KH6cOJbA2aIre7P2wipmzEPAtNrlxNUqZs/rQ8QbjrO2y6DkevEryfP5hmmIt2MpPmyJ3wjn/audUL+YbSFsufBq4mqR8cBYrcQhjrO2y1SdLgrcTPq8jbYUMBXl2YTh3bKgL5KKcRT/2rhblfjXlTjEcdZ2WQTUEF/Fzwrki4CwUDRLYjb/9GLRLF9/+LqKWTrLlfjDcdbgShAvCuJFQbwoiBcF8aIgXhTEi4J4URAvCuJFQbwoiBcF8aIgXhTEi4J4URAvygHxw3VEV2cFLPmsc7xW+PrMgB3HxKdnxP8pjop3fcUofM+ROv7wnPA7nNEZwDMXij+xLFwN4kVBvCinxe/XGYj3zPkSvzsL4j1TINSv5znYboSqUMeLgnhRiomncfdbUOJFQbwoBbpze014xHvm/ADO7pyrKfeDOQITEC+KnXhwBXW8KHatekK9KxAvCv14URAvCqFeFMSLQqgXBfGiEOpFQbwohHpREC8KoV4UxItCqBcF8aIQ6kVBvCiEelEQLwqhXhTEi0KoFwXxohDqRUG8KIR6URAvCqFeFMSLQqgXBfGiEOpFQbwohHpREC+KoXhivScM73qFeE9wnztREC+KoXhCvSeo40WhOycK4kWhHy8K4kU536rnJ0Z/kgKt+hPLQjUKhPr1PHsxgFDvCep4UejOiVJMPI2734JQLwriRTE8SQOe4Hy8KJyPFwXxolDHi8IAjih050RBvCiEelEQLwqhXhTEi0KoFwXxohDqRUG8KHbibyeSguIgXhRCvSiIF4VQLwriRTEUT6j3BOJFIdSLwli9KHTnRKGOF4U6XhTqeFGo40WhjheFOl4UxItiWMdj3hN24hvEe8JQ/ImkoDiIF4VQLwriRSHUi4J4UYrc9SoeuesVod4VRe5zNzzeL4t4TyBeFDvxhHpXUMeLYtiq53y8J+jOiVIk1B+6iTGh3hVFGnfbcyLeM4biqeM9YSj+YI7AhAvq+L2fGCXUe4Jr7kThfLwoxcTTqv8tKPGiMGQriuHIHeI9wcidKIgXhSFbUezq+IB4T9i16gOh3hN24h+cpfEE4kVBvCiIFwXxoiBeFMSLgnhRDMWfSAqKYyieIVtPEOpFQbwoiBcF8aIgXhTEi4J4URAviqF4Lr3yhKH4M2lBaQj1oliKZ7DeEYgXhVAvCuJFIdSLYnjzI67E8ISl+BNpQWkQLwqhXhTEi0KoF8VSPKfnHIF4UWzFU8u7ocDNj/L9jz4vi3hPHBP/Zq7Qf/rxdmeEeldYio93SrwbDorfu5cd4n+VAnX8wRscPkM93v1Ad06Ug+J3I/0XSRPqPfFN42573uOhHvGOOC0+rP7uJ00d7wlT8d9kDK7ldB3/lXiKvBsu6M7t/dIk4j1xeuTueNKEek9Yiv+fROAiTg/Z7ie0JZ5Y7wXjkTvEe4E6XpTz4r8YuQM/lDgtu5MQdbxnTtfx343cId4LxuLBC0fEh9ljY5bjF2J8nz24ivPiDydNqPcE4kWxFP/d4nApluK5CY4jDonfOc/6ZdKPhvOyfrAcq0e8I0zFn0gMCoN4UQj1oiBeFGPx4AVL8RHxfjAWT6j3gnGrHvFeoDsnCo07UazFE+udYB3qEe8E6nhRqONFoY4XxXQAh468H6zFgxOo40UxFU+o9wPiRbEUH6jj/YB4UczFE+t9gHhRCPWiIF4UU/FpAIdQ7wNT8ZGzNG6wDfWM2bqBOl4UunOiFBK/Nd92qEe8D06L379dBnW8Z86X+LB3exzqeM+UCPVP9cfFE+p9UKaO37wv0salV9TxbjC95i5Qx7sB8aKUaNwdvIlxruQJ9T44353bnRPxnjEXDz5AvCgX1PG7Y3l05B1h16pvEe8Je/HggmLiP9bxiHeFaYl/cNGdGxAviunIHXfB8YNpP55vyPvBXjyh3gV24ts+1CPeBXZ1fMud7jxh2arnLjiOsBdPqHcB4kUxvPQq8kvijkC8KMbiI6HeCYbiW8Q7wlg8od4L1iUe804wFs/11V5AvCjGrXrGbL2AeFGMxQd+XtYJ1nU84p1gLx5cYCu+G7oDD9iLJ9S7wFo8dbwTbFv1DNa7wVr8ifSgJNbiG0K9D6zr+OaGeBfYiz+RIpTDvDvHdyp8YC0+NIR6FyBeFOtWPXdDcQLiRTEXT3fOB+Z1POJ9YN+4O5EilAPxotgP4BDqXVBh5A7zHjA/LXsj1rvAXDyVvA+K3PVqe8498YR6DxS5z11S/1l8ruMR74Mi4tPzYfEHMwbXUkj81m9Nvohv+e05PxSo4/fmfJnSEur9UKFVj3gP0J0TpUh37uAPFcTuunrEu6BU4+5wHc+YrQ8QL4qx+HSWhv6cBy6o43d/YjQXecS7wLRVnzvyhHoPGHfn6Mh7oZj4Y2fnUqinP+cB+xKPeBfY1/Hc1dQFpiN3feMO8Q6w7McPp+eO5AsuBvGimIpPPzOaxBPq62N8dq4Tz9fnHFBhAIcTsx6wFh8fiHeBrXiuunNDFfGcn6tPDfH8BpkDjOv4lqE7J9QQT0feAfateup4F1QJ9fTn6lNBPEXeA5XEU8nXxlp8S4n3gXXjLounJ18d81Z9+0C8B8xLfFfk6chXx7zEd627E6lCGaqIf/bjifWVqSSedn1taomPtxvFviYVxD/io0F8bezFt1n80/qkvj8KOBDsqCM+37x8VH273WL+B1bYi39qzxdc3ibTt2UAgOupIf7Ri88hPuueYj7yTaggPj6mS6xnzocJiDehjvjuC3Tbl2MM5vF/LbXEx/sb8S9xAIpTQXzbVfJDid+K7TT0rqeG+Pw9qu6WKPeuK7ei79S/fgDlqCT+Wck3972bokzCUyP/SNwfOwjzZffm/D6Y5MPw1q9l84AcPt36sJu8m50+8S+zdJoadXzbf4HuyHfoNof0bpPAQUgc9nmecBuPhWGIaBgmijOBmy/jpHdMfLX6zcXGEajXdONGmmNOpk3azs+RQ2J/c2Y7arlIPfFdJd8V+4+87PnXfuBy0Hcq/gtvB/bhiQHEc4V2d+mzye40l2qIzxfeZfGH7mk8RNHR7mtMXYlf9AmnUvd5TQ7Fvw9Qb6uJPvj5ET/+KFGq6e9DVf/hCBhc0uj7ks39VU18+vmiJjXt0+OQeChJPfGpuOeqvmvk3fFuSlXxIYTcwOsuu32qH6M+R8HVWN/1qieLT9+ffLp//ov5fYKwb8Jp8WH19+Cyj+V86dBpmmkJvF+NA/Gxq+27fzl4pICfnmIe1O1qAChMJfHt2vzsLO3TfKr672lUN0yR/z75P/r9+mHZ+5nq475c/85W3dPxOqv0QpPy/yRtSprUjVTdh7zcn/OnZcaFwj2/e25xnn1MtT/ydx/jy5TE21kXVKrju29SzVir7A+EZtwtw3PaP8+92f2938d1h7xPh1n7T7sNDsOeTnvmPi057ZL8esx1mjHMdIz/u7dxnsLs8Vyy2/cxv01H7uP5v3k8hkyP2e2sp88f6WqkDbrVpZynN+Et9+nlp5m/MntNqz7mwbt2fJcuvI296y7mP3nE+fHQ9AdCP8tqTSEf7rlTOLfYHRTTlo9ZGtoVeXqIYfEmFaOmK6TN82lxSmFpaMxJM/tgOU+T/jc5202Tn5s0NS3d3b0/D2bEaXNnS7+s8Q3dbnz7+WE7F4p/5rIdzaedlf7O7T76KbHfY830N447sBv86R7dYt2bfvLGL2E0yzfj2y6Ve47GYwL3blSxO5HUDANN3eF4H1eQjtZhddNuXe/h+LLPZ1OaYQsH//MtK/7qCztXhfrYHZ5td4S2+SlfoTEVmndHb9vtubbNNcYjF6B3B/trcWgeU2kdStqR4rXcho3pL5o3CmJ8mcecWq36mPdaTLq7E/Rp77RPB20KBI92CAdtOlTbNk2eLzru8/4QSZ82z5nafDjkWZo0pWmbIQ7H9DoXgkezc7A8Z4k5jfYP/j1u50rxKy4pBE3faBheX7GO38SPeDDlgjp+p/8ArqjXqoeqIF6UYuKp438LSrwoiBel3sgdVIV+vCiIFwXxolDHi0KrXpQrxYNnrhN/VUokZpAY4kUTQ7xoYogXTQzxookhXjQxxIsmxiCMKIgXBfGiIF4UxIuCeFEQLwriRUG8KIgXpZT4j1d8HExmntjJNJepeEqs385iOQv/kVgh8aFMUn3m8+NkmstUPCXWb2ehxMJGBg8vdpoy4kMsKD7Goq68ig/Tn98VH0XEh1hQfPi/o+hPiy8YUAtH57Il/n8OScR/k1oxV/Vz9pfFe603+qveEb9Kp1xALZfY/wbUD+n9fqh32I8P/9nB3U2tWM7icIDXzFkp8fBjIF4UxIuCeFEQLwriRUG8KIgXBfGiIF4UxIuCeFEQLwriRUG8KIgXBfGiIF4UxIuCeFG0xQtvvfCmR+mtF970fC1y93WmwhdP/wICm/iGznn5r0v8An9/C9+x+S02jV2isZV7DLb7L7Mtv3vztxHYxDcsA3tYfPDH+ftb+I7dUP/3d8vf38J3hOHmK7TqQQTEi4J4URAvCuJFQbwoiBcF8aIgXhTEi4J4URAvCuJFQbwoiBcF8aIgXhTEi/IPQ8nXtZS4LWsAAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-7"/> </p>
+
+<p>We can see sudden reduce in error while growing number of the trees.
+Now, let us crossvalidate using the same steps as previous method.</p>
+
+<pre><code class="r">pred2 &lt;- predict(fit2, trainN2)
+tabPred2 &lt;- table(pred2, trainN2$classe)
+tabPred2
+</code></pre>
+
+<pre><code>##      
+## pred2    A    B    C    D    E
+##     A 2230    0    0    0    0
+##     B    2 1518    1    0    0
+##     C    0    0 1363    0    0
+##     D    0    0    4 1286    2
+##     E    0    0    0    0 1440
+</code></pre>
+
+<pre><code class="r">sum(diag(tabPred2))/length((pred2))*100
+</code></pre>
+
+<pre><code>## [1] 99.88529
+</code></pre>
+
+<p>Accuracy here is <strong>99.85%</strong> which is <em>out of sample</em>_ accuracy. our final accuracy should be around this only.
+Even accuracy predicted by model is less than that.
+We will go with this model.
+Now, let us use complete training dataset to train the model and then we will test on the actual data.</p>
+
+<pre><code class="r">fit &lt;- randomForest(classe ~ ., data = trainN, ntree = 500 )
+fit
+</code></pre>
+
+<pre><code>## 
+## Call:
+##  randomForest(formula = classe ~ ., data = trainN, ntree = 500) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 7
+## 
+##         OOB estimate of  error rate: 0.06%
+## Confusion matrix:
+##      A    B    C    D    E  class.error
+## A 5579    1    0    0    0 0.0001792115
+## B    2 3795    0    0    0 0.0005267316
+## C    0    4 3417    1    0 0.0014611338
+## D    0    0    2 3213    1 0.0009328358
+## E    0    0    0    1 3606 0.0002772387
+</code></pre>
+
+<pre><code class="r">plot(fit, main = &quot;Number of trees vs error&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-9"/> </p>
+
+<pre><code class="r">pred &lt;- predict(fit, testN)
+pred
+</code></pre>
+
+<pre><code>## 19623 19624 19625 19626 19627 19628 19629 19630 19631 19632 19633 19634 
+##     B     A     B     A     A     E     D     B     A     A     B     C 
+## 19635 19636 19637 19638 19639 19640 19641 19642 
+##     B     A     E     E     A     B     B     B 
+## Levels: A B C D E
+</code></pre>
+
+<pre><code class="r">pred &lt;- as.character(pred)
+</code></pre>
+
+<p>Thus, We have the prediction using Random Forest for Human Activities. Accuracy of this result is <strong>100%</strong> which is obviously more than the out of sample accuracy predicted for random forest model.</p>
+
+</body>
+
+</html>
